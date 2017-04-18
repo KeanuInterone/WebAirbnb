@@ -7,22 +7,8 @@
 <title>Home</title>
 </head>
 <body>
-<% 
-	class User implements Serializable {
-		public String username;
-		public String password;
-		public User(String _username, String _password) {
-			username = _username;
-			password = _password;
-		}
-		
-		public String toString() {
-			return "username: " + username + " password: " + password;
-		}
-	}
-	User user = new User(request.getParameter("username"), request.getParameter("password"));
-	session.setAttribute("user", user); 
-%>
+
 <a href="greeting.jsp">Greet</a>
+
 </body>
 </html>

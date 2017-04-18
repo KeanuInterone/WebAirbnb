@@ -8,9 +8,8 @@
 </head>
 <body>
 
-<h1>This is my fucking page</h1>
-
-<a href="login.jsp">go the head and fuckin login</a>
+<h1>This is the house page</h1>
+<a href="homePage.jsp">back</a>
 
 
 </body>

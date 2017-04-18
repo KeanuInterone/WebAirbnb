@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 <h1>Welcome to Keanu and Joey's Airbnb!</h1>
 
 <form action="homePage.jsp">
