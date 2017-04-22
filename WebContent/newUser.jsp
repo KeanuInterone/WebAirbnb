@@ -12,10 +12,25 @@
 
 <form action="homePage.jsp">
 
+	Name<br>
+	<input type="text" name="name" /><br>
+	
 	Username<br>
 	<input type="text" name="username" /><br>
+	
 	Password<br>
 	<input type="password" name="password" /><br>
+	
+	Address<br>
+	<input type="text" name="address" /><br>
+	
+	Phone Number<br>
+	<input type="text" name="phone" /><br>
+	
+	Admin<br>
+	<input type="checkbox" name="admin" /><br>
+	
+	<input type="hidden" name="isFromNewUser" value="true" >
 	<input type="submit" />
 
 </form>

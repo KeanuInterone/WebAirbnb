@@ -16,10 +16,13 @@
 	<input type="text" name="username" /><br>
 	Password<br>
 	<input type="password" name="password" /><br>
+	<input type="hidden" name="isFromLogin" value="true" >
 	<input type="submit" />
 </form>
 
-<a href="newUser.jsp">Sign up bitch</a>
+
+<br>
+<a href="newUser.jsp">Create an account</a>
 
 </body>
 </html>

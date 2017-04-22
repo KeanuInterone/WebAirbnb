@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<h1>This is the house page</h1>
-<a href="homePage.jsp">back</a>
+
+<h1>Oops there was an error!</h1>
 
 
 </body>

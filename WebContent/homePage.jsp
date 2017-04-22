@@ -1,34 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.io.Serializable"%>
+    pageEncoding="ISO-8859-1" import="airbnbModels.*, java.sql.*"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>HomePage</title>
 </head>
 <body>
 
 <% 
-	class User implements Serializable {
-		public String username;
-		public String password;
-		public User(String _username, String _password) {
-			username = _username;
-			password = _password;
-		}
-		
-		public String toString() {
-			return "username: " + username + " password: " + password;
-		}
-	}
-
-	User user;
-	if(session.getAttribute("user") == null) 
+ 	
+	User user = null;
+	// FROM LOGIN PAGE
+	if(request.getParameter("isFromLogin") != null) 
 	{
-		user = new User(request.getParameter("username"), request.getParameter("password"));
-		session.setAttribute("user", user);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		user = User.AuthenticateUser(username, password);
+		if (user != null)
+		{
+			System.out.println("user " + username + " is authenticated");
+			session.setAttribute("user", user);
+		}
+		else 
+		{
+			System.out.println("Username or password is incorect");
+			response.sendRedirect("errorPage.jsp");
+		}
 	}
+	// FROM NEW USER PAGE
+	else if (request.getParameter("isFromNewUser") != null)
+	{
+		String name = request.getParameter("name");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		int admin = 0;
+		if(request.getParameter("admin").equals("on"))
+			admin = 1;
+		user = User.InsertUser(name, username, admin, password, address, phone);
+		if (user != null)
+		{
+			System.out.println(name + " was added to the database");
+			session.setAttribute("user", user);
+		}
+		else
+		{
+			System.out.println("Unable to insetert user");
+			response.sendRedirect("errorPage.jsp");
+		}
+	}
+	// RETURNING TO HOME PAGE
 	else
 	{
 		user = (User) session.getAttribute("user");
@@ -37,10 +61,11 @@
 %>
 
 <h1>Home Page</h1>
+<%= user.username %>
 
-<p><%= user.username %></p>
-
-<a href="house.jsp">go to house</a>
+<br>
+<a href="newHouse.jsp">create house</a><br>
+<a href="newHouse.jsp">see your houses</a><br>
 
 
 </body>
